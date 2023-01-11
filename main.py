@@ -63,35 +63,15 @@ def __init__(self):
     def transpose(self):        
         self.gridCell=[list(t)for t in zip(*self.gridCell)]
 
-    def random_cell(self):
-        cells = []
+def compressGrid(self):
+        self.compress=False
+        temp=[[0] *4 for i in range(4)]
         for i in range(4):
+            cnt=0
             for j in range(4):
-                if self.gridCell[i][j] == 0:
-                    cells.append((i, j))
-        curr = random.choice(cells)
-        i = curr[0]
-        j = curr[1]
-        self.gridCell[i][j] = 2
-
-    def can_merge(self):
-        for i in range(4):
-            for j in range(3):
-                if self.gridCell[i][j] == self.gridCell[i][j + 1]:
-                    return True
-
-        for i in range(3):
-            for j in range(4):
-                if self.gridCell[i + 1][j] == self.gridCell[i][j]:
-                    return True
-        return False
-
-    def paintGrid(self):
-        for i in range(4):
-            for j in range(4):
-                if self.gridCell[i][j] == 0:
-                    self.board[i][j].config(text='', bg='azure4')
-                else:
-                    self.board[i][j].config(text=str(self.gridCell[i][j]),
-                                            bg=self.bg_color.get(str(self.gridCell[i][j])),
-                                            fg=self.color.get(str(self.gridCell[i][j])))
+                if self.gridCell[i][j]!=0:
+                    temp[i][cnt]=self.gridCell[i][j]
+                    if cnt!=j:
+                        self.compress=True
+                    cnt+=1
+        self.gridCell=temp

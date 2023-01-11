@@ -31,7 +31,6 @@ class Board:
         '2048': '#f9f6f2',
     }
 
-
 def __init__(self):
     self.n = 4
     self.window = Tk()
@@ -52,7 +51,3 @@ def __init__(self):
             rows.append(l);
         self.board.append(rows)
     self.gameArea.grid()
-
-
-
-

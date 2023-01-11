@@ -107,3 +107,17 @@ def __init__(self):
                     self.board[i][j].config(text=str(self.gridCell[i][j]),
                                             bg=self.bg_color.get(str(self.gridCell[i][j])),
                                             fg=self.color.get(str(self.gridCell[i][j])))
+
+
+class Game:
+    def __init__(self,gamepanel):
+        self.gamepanel=gamepanel
+        self.end=False
+        self.won=False
+
+    def start(self):
+        self.gamepanel.random_cell()
+        self.gamepanel.random_cell()
+        self.gamepanel.paintGrid()
+        self.gamepanel.window.bind('<Key>', self.link_keys)
+        self.gamepanel.window.mainloop()

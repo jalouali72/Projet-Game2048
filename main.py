@@ -75,50 +75,54 @@ def __init__(self):
                             self.compress=True
                         cnt+=1
             self.gridCell=temp
-      def random_cell(self):
-          cells = []
-          for i in range(4):
-              for j in range(4):
-                  if self.gridCell[i][j] == 0:
-                      cells.append((i, j))
-          curr = random.choice(cells)
-          i = curr[0]
-          j = curr[1]
-          self.gridCell[i][j] = 2
+    def random_cell(self):
+        cells = []
+        for i in range(4):
+            for j in range(4):
+                if self.gridCell[i][j] == 0:
+                    cells.append((i, j))
+        curr = random.choice(cells)
+        i = curr[0]
+        j = curr[1]
+        self.gridCell[i][j] = 2
 
-      def can_merge(self):
-          for i in range(4):
-              for j in range(3):
-                  if self.gridCell[i][j] == self.gridCell[i][j + 1]:
-                      return True
+    def can_merge(self):
+        for i in range(4):
+            for j in range(3):
+                if self.gridCell[i][j] == self.gridCell[i][j + 1]:
+                    return True
 
-          for i in range(3):
-              for j in range(4):
-                  if self.gridCell[i + 1][j] == self.gridCell[i][j]:
-                      return True
-          return False
-
-      def paintGrid(self):
-          for i in range(4):
-              for j in range(4):
-                  if self.gridCell[i][j] == 0:
-                      self.board[i][j].config(text='', bg='azure4')
-                  else:
-                      self.board[i][j].config(text=str(self.gridCell[i][j]),
-                                              bg=self.bg_color.get(str(self.gridCell[i][j])),
-                                              fg=self.color.get(str(self.gridCell[i][j]))
+        for i in range(3):
+            for j in range(4):
+                if self.gridCell[i + 1][j] == self.gridCell[i][j]:
+                    return True
+        return False
 
 
-        class Game:
+    def paintGrid(self):
+        for i in range(4):
+            for j in range(4):
+                if self.gridCell[i][j] == 0:
+                    self.board[i][j].config(text='', bg='azure4')
+                else:
+                    self.board[i][j].config(text=str(self.gridCell[i][j]),
+                                            bg=self.bg_color.get(str(self.gridCell[i][j])),
+                                            fg=self.color.get(str(self.gridCell[i][j])))
+
+
+class Game:
+
     def __init__(self,gamepanel):
         self.gamepanel=gamepanel
         self.end=False
         self.won=False
+
     def start(self):
         self.gamepanel.random_cell()
         self.gamepanel.random_cell()
         self.gamepanel.paintGrid()
         self.gamepanel.window.bind('<Key>', self.link_keys)
+
         self.gamepanel.window.mainloop()
     
     def link_keys(self,event):
@@ -188,3 +192,5 @@ def __init__(self):
 gamepanel =Board()
 game2048 = Game( gamepanel)
 game2048.start()
+
+        

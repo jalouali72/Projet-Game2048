@@ -62,3 +62,16 @@ def __init__(self):
                 j-=1
     def transpose(self):        
         self.gridCell=[list(t)for t in zip(*self.gridCell)]
+
+def compressGrid(self):
+        self.compress=False
+        temp=[[0] *4 for i in range(4)]
+        for i in range(4):
+            cnt=0
+            for j in range(4):
+                if self.gridCell[i][j]!=0:
+                    temp[i][cnt]=self.gridCell[i][j]
+                    if cnt!=j:
+                        self.compress=True
+                    cnt+=1
+        self.gridCell=temp

@@ -51,3 +51,14 @@ def __init__(self):
             rows.append(l);
         self.board.append(rows)
     self.gameArea.grid()
+
+    def reverse(self):
+        for ind in range(4):
+            i=0
+            j=3
+            while(i<j):
+                self.gridCell[ind][i],self.gridCell[ind][j]=self.gridCell[ind][j],self.gridCell[ind][i]
+                i+=1
+                j-=1
+    def transpose(self):        
+        self.gridCell=[list(t)for t in zip(*self.gridCell)]

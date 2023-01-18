@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
 import random
-
 class Board:
     bg_color={
 
@@ -30,7 +29,6 @@ class Board:
         '1024': '#f9f6f2',
         '2048': '#f9f6f2',
     }
-
 def __init__(self):
     self.n = 4
     self.window = Tk()
@@ -97,8 +95,6 @@ def __init__(self):
                 if self.gridCell[i + 1][j] == self.gridCell[i][j]:
                     return True
         return False
-
-
     def paintGrid(self):
         for i in range(4):
             for j in range(4):
@@ -188,9 +184,20 @@ class Game:
             self.gamepanel.random_cell()
         
         self.gamepanel.paintGrid()
-    
+
+
+import matplotlib.pyplot as plt
+
+# Définition des données
+x = [0, 1, 2, 3]
+y = [0, 1, 2, 3]
+# Création de la figure
+plt.plot(x, y)
+# Affichage de la figure
+plt.show()
+
+
+
 gamepanel =Board()
 game2048 = Game( gamepanel)
 game2048.start()
-
-        
